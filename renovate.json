@@ -1,0 +1,28 @@
+{
+  "extends": [
+    "schedule:monthly",
+    ":masterIssue",
+    "config:base"
+  ],
+  "prHourlyLimit": 0,
+  "lockFileMaintenance": {
+    "extends": [
+      "schedule:monthly"
+    ],
+    "enabled": true
+  },
+  "postUpdateOptions": [
+    "npmDedupe"
+  ],
+  "separateMajorMinor": false,
+  "updateNotScheduled": false,
+  "packageRules": [
+    {
+      "groupName": "deps",
+      "depTypeList": [
+        "dependencies",
+        "devDependencies"
+      ]
+    }
+  ]
+}
