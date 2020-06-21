@@ -2,14 +2,14 @@ name: deploy
 
 on:
   push:
-    tags:
-      - "v*"
+    branches-ignore:
+      - gh-pages
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      NODE_VERSION: "12"
+      NODE_VERSION: "14"
     steps:
       - uses: actions/checkout@v2
 
@@ -28,10 +28,6 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
 
       - run: npm run build
-
-      - run: |
-          sudo apt-get install tree -y
-          tree -H '.' -L 1 --noreport --charset utf-8 ./dist | tee dist/index.html
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
