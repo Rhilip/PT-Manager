@@ -4,6 +4,12 @@ extends:
   - plugin:import/recommended
   - plugin:import/typescript # this line does the trick
 
+env:
+  browser: true
+  es6: true
+  jquery: true
+  greasemonkey: true
+
 # or configure manually:
 plugins:
   - import
@@ -16,8 +22,12 @@ parser: '@typescript-eslint/parser'
 parserOptions:
   sourceType: module
   ecmaVersion: 6
+  ecmaFeatures:
+    globalReturn: true
+    impliedStrict: true
 
 rules:
+  camelcase: off
   comma-dangle: off
   "import/order": "error"
   "no-unused-vars": "off"

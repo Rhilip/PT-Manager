@@ -1,5 +1,9 @@
 const path = require('path')
 const webpack = require('webpack')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const htmlWebpackPlugin = require('html-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
+const pkg = require('../package.json')
 
 const webpackConfig = {
   node: {
@@ -45,15 +49,33 @@ const webpackConfig = {
       },
       {
         test: /\.css$/,
-        loaders: [
+        loader: [
           'style-loader',
           'css-loader',
         ]
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
       }
     ]
   },
   plugins: [
-    new webpack.HashedModuleIdsPlugin()
+    new webpack.HashedModuleIdsPlugin(),
+    new VueLoaderPlugin(),
+    // eslint-disable-next-line new-cap
+    new htmlWebpackPlugin({
+      template: path.resolve(__dirname, '../src/index.html'),
+      filename: 'index.html',
+      inject: false,
+      pkg: pkg,
+      title: 'PT Manager',
+    }),
+    new CopyPlugin({
+      patterns: [
+        { from: path.resolve(__dirname, '../resource'), to: path.resolve(__dirname, '../dist') },
+      ],
+    })
   ]
 }
 
