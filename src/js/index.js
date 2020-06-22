@@ -12,11 +12,12 @@ if (typeof GM_xmlhttpRequest === 'undefined') {
 } else if (managerHost.includes(location.host)) {
   // 管理页面
   console.log('Manager Page')
-  // 删除原提示安装信息，并插入APP
+  // 删除原提示安装信息
   // eslint-disable-next-line no-undef
   intro_vm.$destroy()
   document.getElementById('introduce_app').remove()
   document.getElementById('introduce_script').remove()
+  // 插入APP
   prepareInsertApplication('ptpp_manager', ManagerApp)
 } else {
   // 获得载入链接清单
@@ -34,9 +35,12 @@ if (typeof GM_xmlhttpRequest === 'undefined') {
 
 function prepareInsertApplication (id, application) {
   // 插入APP
-  const appNode = document.createElement('div')
-  appNode.id = id
-  document.body.appendChild(appNode)
+  if (!document.getElementById(id)) {
+    const appNode = document.createElement('div')
+    appNode.id = id
+    document.body.appendChild(appNode)
+  }
+
   // 激活Vue组件
   Vue.use(ElementUI)
   new Vue({

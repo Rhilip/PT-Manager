@@ -16,7 +16,7 @@ import adapter from 'axios-userscript-adapter'
 
 axios.defaults.adapter = adapter
 
-const managerHost = ['' /* 以文件形式调试 file://xxxxx */, 'ptm.rhilip.info', '']
+const managerHost = ['' /* 以文件形式调试 file://xxxxx */, 'ptm.rhilip.info', 'rhilip.github.io']
 const replace_css_url = require('replace-css-url')
 const pkg = require('../../package.json')
 
@@ -24,7 +24,7 @@ function insertElementCss () {
   // 解决Element CSS中url使用 url(/....) 的形式引入，导致无法使用CDN
   let css = GM_getResourceText('element')
   css = replace_css_url(css, function (path) { // 以 data: 开头的base64编码图片应该不做替换
-    return path.search('data:') === 0 ? path : `https://cdn.jsdelivr.net/npm/element-ui@${pkg.dependencies['element-ui']}/lib/theme-chalk/${path}`
+    return path.search('data:') === 0 ? path : `${pkg.cdn}element-ui@${pkg.dependencies['element-ui']}/lib/theme-chalk/${path}`
   })
   GM_addStyle(css)
 }

@@ -3,7 +3,7 @@ const pkg = require('../package.json')
 module.exports = {
   name: 'PT-Manager',
   namespace: 'https://blog.rhilip.info/',
-  version: pkg.version,
+  version: `${pkg.version}.${Math.floor(new Date() / 1000)}`,
   author: pkg.author,
   source: pkg.repository.url,
   license: 'MIT',
@@ -11,15 +11,15 @@ module.exports = {
     '*://*'
   ],
   require: [
-    `https://cdn.jsdelivr.net/npm/jquery@${pkg.dependencies.jquery}/dist/jquery.min.js`,
-    `https://cdn.jsdelivr.net/npm/axios@${pkg.dependencies.axios}/dist/axios.min.js`,
-    `https://cdn.jsdelivr.net/npm/axios-userscript-adapter@${pkg.dependencies['axios-userscript-adapter']}/dist/axiosGmxhrAdapter.min.js`,
-    `https://cdn.jsdelivr.net/npm/vue@${pkg.dependencies.vue}/dist/vue.min.js`,
-    `https://cdn.jsdelivr.net/npm/element-ui@${pkg.dependencies['element-ui']}/lib/index.js`,
-    `https://cdn.jsdelivr.net/npm/vue-router@${pkg.dependencies['vue-router']}/dist/vue-router.min.js`
+    `${pkg.cdn}jquery@${pkg.dependencies.jquery}/dist/jquery.min.js`,
+    `${pkg.cdn}axios@${pkg.dependencies.axios}/dist/axios.min.js`,
+    `${pkg.cdn}axios-userscript-adapter@${pkg.dependencies['axios-userscript-adapter']}/dist/axiosGmxhrAdapter.min.js`,
+    `${pkg.cdn}vue@${pkg.dependencies.vue}/dist/vue.min.js`,
+    `${pkg.cdn}element-ui@${pkg.dependencies['element-ui']}/lib/index.js`,
+    `${pkg.cdn}vue-router@${pkg.dependencies['vue-router']}/dist/vue-router.min.js`
   ],
   resource: [
-    `element https://cdn.jsdelivr.net/npm/element-ui@${pkg.dependencies['element-ui']}/lib/theme-chalk/index.css`
+    `element ${pkg.cdn}element-ui@${pkg.dependencies['element-ui']}/lib/theme-chalk/index.css`
   ],
   grant: [
     'GM_xmlhttpRequest',

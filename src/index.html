@@ -5,17 +5,16 @@
     <meta charset="UTF-8">
     <title><%= htmlWebpackPlugin.options.title %></title>
     <!-- import CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/element-ui@<%= htmlWebpackPlugin.options.pkg.dependencies['element-ui'] %>/lib/theme-chalk/index.css" rel="stylesheet">
+    <link href="<%= htmlWebpackPlugin.options.pkg.cdn %>element-ui@<%= htmlWebpackPlugin.options.pkg.dependencies['element-ui'] %>/lib/theme-chalk/index.css" rel="stylesheet">
     <style>
-        .donate {text-align: center;margin-bottom: 5px}
-        .el-header {margin-top: 10px}
+        body { background-color: #F2F2F2; }
     </style>
 </head>
 <body>
 
 <div id="introduce_app">
     <el-container>
-        <el-header height="100px">
+        <el-header height="100px" style="margin-top: 10px">
             <el-row>
                 <el-col :span="22" :offset="2">
                     <el-image src="./static/logo.png" fit="cover"></el-image>
@@ -49,7 +48,7 @@
                             <template v-slot:description="description">
                                 <p>
                                     请在安装完成用户脚本管理器后，直接点击按钮&nbsp;
-                                    <a class="btn" href='<%= htmlWebpackPlugin.options.pkg.repository.url %>' target="_blank">
+                                    <a class="btn" href='./index.prod.user.js' target="_blank">
                                         <el-button size="mini" type="primary">安装</el-button>
                                     </a>&nbsp;
                                     ，在弹出的用户脚本管理器页面确认安装。
@@ -73,10 +72,10 @@
                 <el-col :span="4">
                     <el-tag type="success" style="margin-bottom: 10px">捐赠</el-tag>
                     <div>
-                        <div class="donate">
+                        <div style="text-align: center;margin-bottom: 5px">
                             <el-image fit="cover" src="./static/donate/alipay.jpg"></el-image><span >Alipay</span>
                         </div>
-                        <div class="donate">
+                        <div style="text-align: center;margin-bottom: 5px">
                             <el-image fit="cover" src="./static/donate/wechat.jpg"></el-image><span >Wechat</span>
                         </div>
                     </div>
@@ -91,9 +90,11 @@
     </el-container>
 </div>
 
+<div id="ptpp_manager" style=""></div>
+
 <!-- import Javascript -->
-<script src="https://cdn.jsdelivr.net/npm/vue@<%= htmlWebpackPlugin.options.pkg.dependencies.vue %>/dist/vue.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/element-ui@<%= htmlWebpackPlugin.options.pkg.dependencies['element-ui'] %>/lib/index.js"></script>
+<script src="<%= htmlWebpackPlugin.options.pkg.cdn %>vue@<%= htmlWebpackPlugin.options.pkg.dependencies.vue %>/dist/vue.min.js"></script>
+<script src="<%= htmlWebpackPlugin.options.pkg.cdn %>element-ui@<%= htmlWebpackPlugin.options.pkg.dependencies['element-ui'] %>/lib/index.js"></script>
 <script id="introduce_script">
     const intro_vm = new Vue({el: '#introduce_app'})
 </script>
