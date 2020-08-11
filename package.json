@@ -8,7 +8,7 @@
   },
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "yarn build:index",
+    "build": "yarn build:index && yarn build:userscript",
     "lint": "vue-cli-service lint",
     "build:index": "vue-cli-service build",
     "build:userscript": "webpack --mode production --config webpack.config.userscript.js"
