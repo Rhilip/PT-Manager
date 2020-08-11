@@ -1,0 +1,49 @@
+{
+  "name": "pt-manager",
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": {
+    "name": "Rhilip",
+    "email": "rhilipruan@gmail.com"
+  },
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "yarn build:index",
+    "lint": "vue-cli-service lint",
+    "build:index": "vue-cli-service build",
+    "build:userscript": "webpack --mode production --config webpack.config.userscript.js"
+  },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Rhilip/PT-Manager"
+  },
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "element-ui": "^2.4.5",
+    "vue": "^2.6.11",
+    "vue-class-component": "^7.2.3",
+    "vue-property-decorator": "^8.4.2",
+    "vue-router": "^3.2.0"
+  },
+  "devDependencies": {
+    "@types/tampermonkey": "^4.0.0",
+    "@typescript-eslint/eslint-plugin": "^2.33.0",
+    "@typescript-eslint/parser": "^2.33.0",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-typescript": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/eslint-config-typescript": "^5.0.2",
+    "axios": "^0.19.2",
+    "axios-userscript-adapter": "^0.0.4",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "typescript": "~3.9.3",
+    "userscript-metadata-webpack-plugin": "^0.0.6",
+    "vue-cli-plugin-element": "~1.0.1",
+    "vue-template-compiler": "^2.6.11",
+    "webpack-cli": "^3.3.12"
+  }
+}
