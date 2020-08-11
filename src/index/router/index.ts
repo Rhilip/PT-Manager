@@ -14,11 +14,25 @@ const routes: Array<RouteConfig> = [
 
     {
         path: '/',
-        component: () => import('../views/Index.vue'),
+        component: () => import('../views/Layer.vue'),
         meta: {
             requireInstall: true
         },
-        children: []
+        children: [
+            {
+                path: '',
+                name: 'Home',
+                component: () => import('../views/Home.vue'),
+                meta: {content: '概览'}
+            },
+
+            {
+                path: 'search',
+                name: 'Search',
+                component: () => import('../views/Search.vue'),
+                meta: {content: '种子搜索'}
+            }
+        ]
     }
 ]
 
