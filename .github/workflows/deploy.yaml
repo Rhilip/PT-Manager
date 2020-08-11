@@ -1,0 +1,34 @@
+name: deploy
+
+on:
+  push:
+    branches-ignore:
+      - gh-pages
+      - old-test
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      NODE_VERSION: "14"
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - uses: bahmutov/npm-install@v1
+
+      - run: yarn build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          commit_message: deploy ${{ github.ref }}
+          force_orphan: true
+          user_name: github-actions[bot]
+          user_email: github-actions[bot]@users.noreply.github.com
