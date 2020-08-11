@@ -2,9 +2,8 @@ name: deploy
 
 on:
   push:
-    branches-ignore:
-      - gh-pages
-      - old-test
+    branches:
+      - master
 
 jobs:
   deploy:
