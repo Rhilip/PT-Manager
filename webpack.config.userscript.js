@@ -20,7 +20,8 @@ module.exports = {
   externals: {
     jquery: '$',
     axios: 'axios',
-    'axios-userscript-adapter': 'axiosGmxhrAdapter'
+    'axios-userscript-adapter': 'axiosGmxhrAdapter',
+    'gm-storage': 'GMStorage'
   },
   module: {
     rules: [

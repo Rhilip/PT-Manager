@@ -4392,6 +4392,11 @@ globby@^9.2.0:
     pify "^4.0.1"
     slash "^2.0.0"
 
+gm-storage@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/gm-storage/-/gm-storage-0.2.0.tgz#a95c8be60626ea4a1304268b6e0c9e33052d8a03"
+  integrity sha512-fV1MUTGooT5Lv6a5ZF6m/Zjxx7sW29hUUBOCHgEcumPi4MQVY52MDRlQicu5jWhNqtr2W8wOQkm1owSTf0ANuA==
+
 graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.2.0, graceful-fs@^4.2.2:
   version "4.2.4"
   resolved "https://registry.npm.taobao.org/graceful-fs/download/graceful-fs-4.2.4.tgz#2256bde14d3632958c465ebc96dc467ca07a29fb"

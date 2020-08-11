@@ -40,6 +40,7 @@
     "axios-userscript-adapter": "^0.0.4",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
+    "gm-storage": "^0.2.0",
     "typescript": "~3.9.3",
     "userscript-metadata-webpack-plugin": "^0.0.6",
     "vue-cli-plugin-element": "~1.0.1",
