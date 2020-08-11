@@ -26,7 +26,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    if (to.matched.some(record => record.meta.requireInstall) && (window as any)['__PTM_BRIDGE__'] === undefined) {
+    if (to.matched.some(record => record.meta.requireInstall) && (window as any)['__PT_MANAGER__'] === undefined) {
         next('/install')
     } else {
         next()

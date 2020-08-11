@@ -10,6 +10,9 @@ module.exports = {
     Buffer: false
   },
   entry: './src/userscript/main.ts',
+  resolve: {
+    extensions: ['.ts', '.js']
+  },
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'index.prod.user.js'

@@ -2,19 +2,20 @@
     <el-container>
         <el-header height="100px" style="margin-top: 10px">
             <el-row>
-                <el-col :span="22" :offset="2">
+                <el-col :offset="2" :span="22">
                     <el-image :src="logo" fit="cover"></el-image>
                 </el-col>
             </el-row>
         </el-header>
         <el-main>
             <el-row>
-                <el-col :span="16" :offset="2">
-                    <el-tag type="success" style="margin-bottom: 10px">使用说明</el-tag>
-                    <el-steps direction="vertical" :active="2">
-                        <el-step title="安装一个用户脚本管理器" status="process">
+                <el-col :offset="2" :span="16">
+                    <el-tag style="margin-bottom: 10px" type="success">使用说明</el-tag>
+                    <el-steps :active="2" direction="vertical">
+                        <el-step status="process" title="安装一个用户脚本管理器">
                             <template v-slot:description>
-                                <el-alert type="info" show-icon :closable="false" title="要使用用户脚本，您首先需要安装一个用户脚本管理器。根据您使用的浏览器不同，可用的用户脚本管理器也有所不同。">
+                                <el-alert :closable="false" show-icon title="要使用用户脚本，您首先需要安装一个用户脚本管理器。根据您使用的浏览器不同，可用的用户脚本管理器也有所不同。"
+                                          type="info">
                                 </el-alert>
                                 <ul>
                                     <li>Chrome：<a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo">Tampermonkey</a> 或 <a href="https://chrome.google.com/webstore/detail/violent-monkey/jinjaccalgkegednnccohejagnlnfdag">Violent monkey</a></li>
@@ -40,9 +41,9 @@
                                     ，在弹出的用户脚本管理器页面确认安装。
                                 </p>
                                 <p>
-                                    <el-alert type="warning" show-icon :closable="false"
+                                    <el-alert :closable="false" description="如果你使用Tamermonkey进行用户脚本管理，请务必确保在安装完成后，Tamermonkey提示跨源资源访问窗口时点击“总是允许域名”，然后再刷新一遍页面。" show-icon
                                               title="请注意："
-                                              description="如果你使用Tamermonkey进行用户脚本管理，请务必确保在安装完成后，Tamermonkey提示跨源资源访问窗口时点击“总是允许域名”，然后再刷新一遍页面。"
+                                              type="warning"
                                     >
                                     </el-alert>
                                 </p>
@@ -56,22 +57,24 @@
                     </el-steps>
                 </el-col>
                 <el-col :span="4">
-                    <el-tag type="success" style="margin-bottom: 10px">捐赠</el-tag>
+                    <el-tag style="margin-bottom: 10px" type="success">捐赠</el-tag>
                     <div>
                         <div style="text-align: center;margin-bottom: 5px">
-                            <el-image fit="cover" :src="donateAlipay"></el-image><span >Alipay</span>
+                            <el-image :src="donateAlipay" fit="cover"></el-image>
+                            <span>Alipay</span>
                         </div>
                         <div style="text-align: center;margin-bottom: 5px">
-                            <el-image fit="cover" :src="donateWechat"></el-image><span >Wechat</span>
+                            <el-image :src="donateWechat" fit="cover"></el-image>
+                            <span>Wechat</span>
                         </div>
                     </div>
                 </el-col>
             </el-row>
         </el-main>
         <el-footer style="text-align: center">
-            <el-link type="info" href="//blog.rhilip.info">Blog</el-link>
+            <el-link href="//blog.rhilip.info" type="info">Blog</el-link>
             <el-divider direction="vertical"></el-divider>
-            <el-link type="info" href="//github.com/Rhilip/PT-Manager">Github</el-link>
+            <el-link href="//github.com/Rhilip/PT-Manager" type="info">Github</el-link>
         </el-footer>
     </el-container>
 </template>
@@ -92,15 +95,17 @@
     created() {
       // 防止已安装脚本的人，重新进入install页面
       const check = setInterval(() => {
-        if (window['__PTM_BRIDGE__'] !== undefined) {
+        if (window['__PT_MANAGER__'] !== undefined) {
           this.$router.push('/')
           clearInterval(check)
         }
-      }, 1e3)
+      }, 2e3)
     }
   }
 </script>
 
 <style scoped>
-    body { background-color: #F2F2F2; }
+    body {
+        background-color: #F2F2F2;
+    }
 </style>
