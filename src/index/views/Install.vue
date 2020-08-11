@@ -83,6 +83,7 @@
   import logo from '../assets/logo.png'
   import donateWechat from '../assets/donate/wechat.jpg'
   import donateAlipay from '../assets/donate/alipay.jpg'
+  import bridge from "../plugins/bridge";
 
   export default {
     name: "Install",
@@ -95,11 +96,11 @@
     created() {
       // 防止已安装脚本的人，重新进入install页面
       const check = setInterval(() => {
-        if (window['__PT_MANAGER__'] !== undefined) {
+        if (bridge() !== undefined) {
           this.$router.push('/')
           clearInterval(check)
         }
-      }, 2e3)
+      }, 1e3)
     }
   }
 </script>

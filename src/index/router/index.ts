@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter, {RouteConfig} from 'vue-router'
+import bridge from "@/index/plugins/bridge";
 
 Vue.use(VueRouter)
 
@@ -26,7 +27,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    if (to.matched.some(record => record.meta.requireInstall) && (window as any)['__PT_MANAGER__'] === undefined) {
+    if (to.matched.some(record => record.meta.requireInstall) && bridge() === undefined) {
         next('/install')
     } else {
         next()
