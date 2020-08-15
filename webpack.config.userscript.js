@@ -11,6 +11,9 @@ module.exports = {
   },
   entry: './src/userscript/main.ts',
   resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
     extensions: ['.ts', '.js']
   },
   output: {
@@ -23,8 +26,9 @@ module.exports = {
   externals: {
     jquery: '$',
     axios: 'axios',
+    localforage: 'localforage',
     'axios-userscript-adapter': 'axiosGmxhrAdapter',
-    'gm-storage': 'GMStorage'
+    'gm-storage': 'GMStorage',
   },
   module: {
     rules: [

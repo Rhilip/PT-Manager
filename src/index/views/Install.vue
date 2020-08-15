@@ -83,7 +83,6 @@
   import logo from '../assets/logo.png'
   import donateWechat from '../assets/donate/wechat.jpg'
   import donateAlipay from '../assets/donate/alipay.jpg'
-  import bridge from "../plugins/bridge";
 
   export default {
     name: "Install",
@@ -92,15 +91,6 @@
         logo,
         donateWechat, donateAlipay
       }
-    },
-    created() {
-      // 防止已安装脚本的人，重新进入install页面
-      const check = setInterval(() => {
-        if (bridge() !== undefined) {
-          this.$router.push('/')
-          clearInterval(check)
-        }
-      }, 1e3)
     }
   }
 </script>

@@ -14,11 +14,12 @@ module.exports = {
   ],
   require: [
     //`${cdn}jquery@${pkg.dependencies.jquery}/dist/jquery.min.js`,
-    `${cdn}vue@${pkg.dependencies.vue}/dist/vue.min.js`,
+    `${cdn}vue@${pkg.dependencies['vue']}/dist/vue.min.js`,
     `${cdn}element-ui@${pkg.dependencies['element-ui']}/lib/index.js`,
     `${cdn}axios@${pkg.devDependencies['axios']}/dist/axios.min.js`,
     `${cdn}axios-userscript-adapter@${pkg.devDependencies['axios-userscript-adapter']}/dist/axiosGmxhrAdapter.min.js`,
-    `${cdn}gm-storage@${pkg.devDependencies['gm-storage']}/dist/index.umd.min.js`
+    `${cdn}gm-storage@${pkg.devDependencies['gm-storage']}/dist/index.umd.min.js`,
+    `${cdn}localforage@${pkg.dependencies['localforage']}/dist/localforage.min.js`
   ],
   resource: [
     `element ${cdn}element-ui@${pkg.dependencies['element-ui']}/lib/theme-chalk/index.css`
