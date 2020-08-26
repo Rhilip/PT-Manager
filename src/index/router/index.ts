@@ -31,7 +31,20 @@ const routes: Array<RouteConfig> = [
                 name: 'Search',
                 component: () => import('../views/Search.vue'),
                 meta: {content: '种子搜索'}
-            }
+            },
+
+            {
+                path: 'setting/sites',
+                name: 'Setting/Sites',
+                component: () => import('../views/Setting/Sites.vue'),
+                meta: {content: '站点设置'}
+            },
+            {
+                path: 'setting/clients',
+                name: 'Setting/Clients',
+                component: () => import('../views/Setting/Clients.vue'),
+                meta: {content: '下载服务器设置'}
+            },
         ]
     }
 ]

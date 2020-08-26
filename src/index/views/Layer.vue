@@ -1,28 +1,44 @@
 <template>
     <el-container>
-        <el-header height="50px">
-            <el-button :icon="isCollapse ? 'el-icon-s-fold' : 'el-icon-s-unfold'" circle @click.stop="isCollapse = !isCollapse">
-            </el-button>
-        </el-header>
-        <el-container>
-            <el-aside :width="isCollapse ? '65px' : '220px'">
-                <el-menu class="el-menu-vertical-aside" router
-                         :default-active="$route.name" :collapse="isCollapse">
+        <el-scrollbar>
+            <el-aside width="220px">
+                <el-menu :default-active="$route.name" class="el-menu-vertical-aside"
+                         router>
+                    <el-image :fit="'scale-down'"
+                              :src="require('@/index/assets/logo.png')"></el-image>
                     <el-menu-item-group>
                         <template slot="title">
                             <span>概览</span>
                         </template>
-                        <el-menu-item index="Home" :route="{name: 'Home'}">
-                            <i class="el-icon-menu" />
+                        <el-menu-item :route="{name: 'Home'}" index="Home">
+                            <i class="el-icon-menu"/>
                             <span slot="title">个人数据</span>
                         </el-menu-item>
-                        <el-menu-item index="Search" :route="{name: 'Search'}">
-                            <i class="el-icon-search" />
+                        <el-menu-item :route="{name: 'Search'}" index="Search">
+                            <i class="el-icon-search"/>
                             <span slot="title">搜索结果</span>
+                        </el-menu-item>
+                    </el-menu-item-group>
+                    <el-menu-item-group>
+                        <template slot="title">
+                            <span>参数设置</span>
+                        </template>
+                        <el-menu-item :route="{name: 'Setting/Sites'}" index="Setting/Sites">
+                            <i class="el-icon-s-shop"/>
+                            <span slot="title">站点设置</span>
+                        </el-menu-item>
+                        <el-menu-item :route="{name: 'Setting/Clients'}" index="Setting/Clients">
+                            <i class="el-icon-s-promotion"/>
+                            <span slot="title">下载服务器</span>
                         </el-menu-item>
                     </el-menu-item-group>
                 </el-menu>
             </el-aside>
+        </el-scrollbar>
+        <el-container>
+            <el-header height="50px">
+                Header
+            </el-header>
             <el-main>
                 <router-view/>
             </el-main>
@@ -35,7 +51,6 @@
     name: "Index",
     data () {
       return {
-        isCollapse: false
       }
     },
     methods: {

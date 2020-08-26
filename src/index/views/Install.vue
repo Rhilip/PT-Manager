@@ -3,7 +3,7 @@
         <el-header height="100px" style="margin-top: 10px">
             <el-row>
                 <el-col :offset="2" :span="22">
-                    <el-image :src="logo" fit="cover"></el-image>
+                    <el-image :src="require('@/index/assets/logo.png')" fit="cover"></el-image>
                 </el-col>
             </el-row>
         </el-header>
@@ -41,7 +41,7 @@
                                     ，在弹出的用户脚本管理器页面确认安装。
                                 </p>
                                 <p>
-                                    <el-alert :closable="false" description="如果你使用Tamermonkey进行用户脚本管理，请务必确保在安装完成后，Tamermonkey提示跨源资源访问窗口时点击“总是允许域名”，然后再刷新一遍页面。" show-icon
+                                    <el-alert :closable="false" description="如果你使用 Tamermonkey 进行用户脚本管理，请务必确保在安装完成后，Tamermonkey 提示跨源资源访问窗口时点击“总是允许域名”，然后再刷新一遍页面。" show-icon
                                               title="请注意："
                                               type="warning"
                                     >
@@ -52,6 +52,12 @@
                         <el-step title="刷新此页面">
                             <template v-slot:description>
                                 <p>如果你确认完成了<b>脚本管理器</b>和<b>用户脚本</b>的安装，请刷新此页面。如果发现本提示页面已经消失并出现管理界面，则说明安装完成。</p>
+                                <p>
+                                    如果已启用脚本，但页面未能正常跳转。你也可以点击此处
+                                    <el-button @click.stop="forceEnter" size="mini" type="success">
+                                        强行进入
+                                    </el-button>
+                                </p>
                             </template>
                         </el-step>
                     </el-steps>
@@ -60,11 +66,11 @@
                     <el-tag style="margin-bottom: 10px" type="success">捐赠</el-tag>
                     <div>
                         <div style="text-align: center;margin-bottom: 5px">
-                            <el-image :src="donateAlipay" fit="cover"></el-image>
+                            <el-image :src="require('@/index/assets/donate/alipay.jpg')" fit="cover"></el-image>
                             <span>Alipay</span>
                         </div>
                         <div style="text-align: center;margin-bottom: 5px">
-                            <el-image :src="donateWechat" fit="cover"></el-image>
+                            <el-image :src="require('@/index/assets/donate/wechat.jpg')" fit="cover"></el-image>
                             <span>Wechat</span>
                         </div>
                     </div>
@@ -80,16 +86,16 @@
 </template>
 
 <script>
-  import logo from '../assets/logo.png'
-  import donateWechat from '../assets/donate/wechat.jpg'
-  import donateAlipay from '../assets/donate/alipay.jpg'
-
   export default {
     name: "Install",
     data() {
-      return {
-        logo,
-        donateWechat, donateAlipay
+      return {}
+    },
+    methods: {
+      forceEnter() {
+        this.$router.push({name: 'Home'}).catch(() => {
+          this.$message({message: '诶诶，你至少得安装脚本，才能强行进入呀', type: 'error'})
+        })
       }
     }
   }

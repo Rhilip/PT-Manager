@@ -32,16 +32,12 @@ export default class Application {
         }
 
         // Init Insert
-        try {
-            await this.initSupportSitePage()
-        } catch (e) {
-            await this.initOtherSitePage()
-        }
+        return await this.initSupportSitePage()
     }
 
     // 管理页面注入脚本，该功能最为完善
     async initManagerPage() {
-        // 首先 判断是不是在install页面，如果是的话，重定向安装后的首页
+        // 首先 判断是不是在install页面，如果是的话，重定向到安装后的首页，即 '#/'
         if (location.hash === '#/install') {
             location.hash = '#/'
         }
@@ -58,11 +54,6 @@ export default class Application {
         }
 
         // 最后应该抛出一个错误，让try捕捉到，说明未在前面的站点配置项中搜索到该网址对应的配置
-        throw new CantInsertScriptError('访问未被添加的站点网址或不是PT站点的网址')
-    }
-
-    // 未被支持，但可以提取出种子或magnet链接的站点
-    async initOtherSitePage() {
         throw new CantInsertScriptError('访问未被添加的站点网址或不是PT站点的网址')
     }
 }
