@@ -30,7 +30,7 @@ const routes: Array<RouteConfig> = [
                 path: 'search',
                 name: 'Search',
                 component: () => import('../views/Search.vue'),
-                meta: {content: '种子搜索'}
+                meta: {content: '搜索聚合'}
             },
 
             {

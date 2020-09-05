@@ -16,7 +16,7 @@
                         </el-menu-item>
                         <el-menu-item :route="{name: 'Search'}" index="Search">
                             <i class="el-icon-search"/>
-                            <span slot="title">搜索结果</span>
+                            <span slot="title">搜索聚合</span>
                         </el-menu-item>
                     </el-menu-item-group>
                     <el-menu-item-group>
@@ -37,7 +37,8 @@
         </el-scrollbar>
         <el-container>
             <el-header height="50px">
-                Header
+                <el-page-header @back="$router.back()" :content="$route.meta.content || ''" style="margin-top: 12px;">
+                </el-page-header>
             </el-header>
             <el-main>
                 <router-view/>
@@ -65,5 +66,11 @@
 
     .el-menu-vertical-aside:not(.el-menu--collapse) {
         width: 220px;
+    }
+</style>
+
+<style>
+    .main-card:not(:last-of-type) {
+        margin-bottom: 10px;
     }
 </style>

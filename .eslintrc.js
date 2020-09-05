@@ -8,7 +8,7 @@ module.exports = {
     greasemonkey: true
   },
   globals: {
-    '__PTM_BRIDGE__': true
+    '__PT_MANAGER__': true
   },
   'extends': [
     'plugin:vue/essential',
@@ -21,6 +21,7 @@ module.exports = {
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    "@typescript-eslint/ban-ts-ignore": "off",
     '@typescript-eslint/no-var-requires': 0,
   }
 }
