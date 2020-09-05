@@ -66,6 +66,7 @@
   import _ from 'lodash';
   import {clientsConfig} from "../../../plugins/factory/clients";
   import bridge from "../../../plugins/bridge";
+  import {formatTimeoutTooltip} from "../../../plugins/common";
 
   export default {
     name: "ClientAdd",
@@ -139,22 +140,7 @@
         }
       },
 
-      formatTimeoutTooltip(timeout) {
-        const totalSecond = timeout / 1000
-        const minute = parseInt(totalSecond / 60)
-        const second = minute > 0 ? totalSecond % (60 * minute) : totalSecond
-
-        const convert = []
-        if (minute > 0) {
-          convert.push(`${minute} 分钟`)
-        }
-
-        if (second > 0) {
-          convert.push(`${second} 秒`)
-        }
-
-        return convert.join(' ')
-      }
+      formatTimeoutTooltip
     }
   }
 </script>
