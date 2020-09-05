@@ -23,7 +23,7 @@ export interface TransmissionBaseResponse {
 
 export interface TransmissionTorrentGetResponse extends TransmissionBaseResponse {
     arguments: {
-        torrents: rawTorrent[]
+        torrents: RawTorrent[]
     }
 }
 
@@ -59,6 +59,7 @@ export interface TransmissionTorrentFilterRules extends TorrentFilterRules {
     ids?: TransmissionTorrentIds;
 }
 
+// @ts-ignore
 export interface TransmissionArguments {
 
 }
@@ -75,12 +76,13 @@ export interface TransmissionTorrentRemoveArguments extends TransmissionTorrentB
     'delete-local-data'?: boolean
 }
 
+// @ts-ignore
 export interface TransmissionTorrentClientConfig extends TorrentClientConfig {
 
 }
 
 // 这里只写出了部分我们需要的
-export interface rawTorrent {
+export interface RawTorrent {
     addedDate: number,
     id: number,
     hashString: string,

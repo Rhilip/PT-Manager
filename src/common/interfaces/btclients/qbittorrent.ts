@@ -179,7 +179,7 @@ export enum QbittorrentTorrentState {
     MissingFiles = 'missingFiles',
 }
 
-export interface rawTorrent {
+export interface RawTorrent {
     /**
      * Torrent name
      */

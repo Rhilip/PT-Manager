@@ -13,10 +13,10 @@ import {
 } from "@/common/interfaces/btclients/deluge";
 
 import urljoin from "url-join";
-import {Buffer} from "buffer/";
+import {AxiosResponse} from "axios";
 
 import axios from "@/userscript/lib/axios";
-import {AxiosResponse} from "axios";
+import {arrayBufferToBase64} from "@/userscript/lib/utils";
 
 export default class Deluge implements TorrentClient {
     readonly config: TorrentClientConfig;
@@ -74,7 +74,7 @@ export default class Deluge implements TorrentClient {
             const req = await axios.get(url, {
                 responseType: 'arraybuffer'
             })
-            let metainfo = Buffer.from(req.data, 'binary').toString('base64')
+            let metainfo = arrayBufferToBase64(req.data)
             params = ['', metainfo, delugeOptions]
         } else {          // 连接 add_torrent_url
             method = 'core.add_torrent_url'

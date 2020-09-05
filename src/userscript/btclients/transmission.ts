@@ -7,7 +7,7 @@ import {
 import {
     defaultTransmissionConfig,
     AddTorrentResponse,
-    rawTorrent, TransmissionAddTorrentOptions,
+    RawTorrent, TransmissionAddTorrentOptions,
     TransmissionBaseResponse,
     TransmissionRequestMethod,
     TransmissionTorrent, TransmissionTorrentBaseArguments,
@@ -15,17 +15,15 @@ import {
     TransmissionTorrentGetArguments, TransmissionTorrentGetResponse, TransmissionTorrentRemoveArguments
 } from "@/common/interfaces/btclients/transmission";
 
-import {Buffer} from "buffer/";
-
 import urljoin from "url-join";
 import axios from "@/userscript/lib/axios";
 import {AxiosResponse} from 'axios';
+import {arrayBufferToBase64} from "@/userscript/lib/utils";
 
 
 export default class Transmission implements TorrentClient {
     config: TorrentClientConfig;
     private readonly address: string;
-    private readonly authHeader: string;
 
     private sessionId: string = '';
 
@@ -38,10 +36,6 @@ export default class Transmission implements TorrentClient {
             address = urljoin(address, '/transmission/rpc')
         }
         this.address = address
-
-        this.authHeader = 'Basic ' + new Buffer(
-            this.config.username + (this.config.password ? ':' + this.config.password : '')
-        ).toString('base64');  // 直接在constructor的时候生成，防止后续使用时多次生成
     }
 
     async addTorrent(url: string, options: Partial<TransmissionAddTorrentOptions> = {}): Promise<boolean> {
@@ -49,7 +43,7 @@ export default class Transmission implements TorrentClient {
             const req = await axios.get(url, {
                 responseType: 'arraybuffer'
             })
-            options.metainfo = Buffer.from(req.data, 'binary').toString('base64')
+            options.metainfo = arrayBufferToBase64(req.data)
         } else {
             options.filename = url
         }
@@ -161,8 +155,11 @@ export default class Transmission implements TorrentClient {
                 method: method,
                 arguments: args,
             }, {
+                auth: {
+                    username: this.config.username,
+                    password: this.config.password
+                },
                 headers: {
-                    Authorization: this.authHeader,
                     'X-Transmission-Session-Id': this.sessionId
                 },
                 timeout: this.config.timeout
@@ -177,7 +174,7 @@ export default class Transmission implements TorrentClient {
         }
     }
 
-    _normalizeTorrent(torrent: rawTorrent): TransmissionTorrent {
+    _normalizeTorrent(torrent: RawTorrent): TransmissionTorrent {
         const dateAdded = new Date(torrent.addedDate * 1000).toISOString();
 
         let state = TorrentState.unknown;

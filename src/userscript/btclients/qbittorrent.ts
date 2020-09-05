@@ -6,7 +6,7 @@ import {
     QbittorrentTorrentClientConfig,
     QbittorrentTorrentFilterRules,
     QbittorrentTorrentState,
-    rawTorrent,
+    RawTorrent,
 } from "@/common/interfaces/btclients/qbittorrent";
 
 import urljoin from 'url-join'
@@ -118,7 +118,7 @@ export default class Qbittorrent implements TorrentClient {
         }
 
         const res = await this.request('GET', '/torrents/info', filter)
-        return res.data.map((torrent: rawTorrent) => this._normalizeTorrent(torrent))
+        return res.data.map((torrent: RawTorrent) => this._normalizeTorrent(torrent))
     }
 
     async getAllTorrents(): Promise<QbittorrentTorrent[]> {
@@ -166,7 +166,7 @@ export default class Qbittorrent implements TorrentClient {
         return hashs
     }
 
-    _normalizeTorrent(torrent: rawTorrent): QbittorrentTorrent {
+    _normalizeTorrent(torrent: RawTorrent): QbittorrentTorrent {
         let state = TorrentState.unknown;
 
         switch (torrent.state) {

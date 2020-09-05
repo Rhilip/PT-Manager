@@ -3,7 +3,7 @@
         <el-header height="100px" style="margin-top: 10px">
             <el-row>
                 <el-col :offset="2" :span="22">
-                    <el-image :src="require('@/index/assets/logo.png')" fit="cover"></el-image>
+                    <el-image src="/assets/logo.png" fit="cover"></el-image>
                 </el-col>
             </el-row>
         </el-header>
@@ -66,11 +66,11 @@
                     <el-tag style="margin-bottom: 10px" type="success">捐赠</el-tag>
                     <div>
                         <div style="text-align: center;margin-bottom: 5px">
-                            <el-image :src="require('@/index/assets/donate/alipay.jpg')" fit="cover"></el-image>
+                            <el-image src="/assets/donate/alipay.jpg" fit="cover"></el-image>
                             <span>Alipay</span>
                         </div>
                         <div style="text-align: center;margin-bottom: 5px">
-                            <el-image :src="require('@/index/assets/donate/wechat.jpg')" fit="cover"></el-image>
+                            <el-image src="/assets/donate/wechat.jpg" fit="cover"></el-image>
                             <span>Wechat</span>
                         </div>
                     </div>

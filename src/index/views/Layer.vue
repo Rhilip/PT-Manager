@@ -1,11 +1,11 @@
 <template>
-    <el-container>
+    <el-container style="height: 100%;">
         <el-scrollbar>
             <el-aside width="220px">
                 <el-menu :default-active="$route.name" class="el-menu-vertical-aside"
                          router>
                     <el-image :fit="'scale-down'"
-                              :src="require('@/index/assets/logo.png')"></el-image>
+                              src="/assets/logo.png"></el-image>
                     <el-menu-item-group>
                         <template slot="title">
                             <span>概览</span>
@@ -32,12 +32,21 @@
                             <span slot="title">下载服务器</span>
                         </el-menu-item>
                     </el-menu-item-group>
+                    <el-menu-item-group>
+                        <template slot="title">
+                            <span>鸣谢</span>
+                        </template>
+                        <el-menu-item>
+                            <i class="el-icon-s-shop"/>
+                            <span slot="title">TODO</span>
+                        </el-menu-item>
+                    </el-menu-item-group>
                 </el-menu>
             </el-aside>
         </el-scrollbar>
         <el-container>
             <el-header height="50px">
-                <el-page-header @back="$router.back()" :content="$route.meta.content || ''" style="margin-top: 12px;">
+                <el-page-header :content="$route.meta.content || ''" @back="$router.back()" style="margin-top: 12px;">
                 </el-page-header>
             </el-header>
             <el-main>
@@ -50,12 +59,10 @@
 <script>
   export default {
     name: "Index",
-    data () {
-      return {
-      }
+    data() {
+      return {}
     },
-    methods: {
-    }
+    methods: {}
   }
 </script>
 

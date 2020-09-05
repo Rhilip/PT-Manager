@@ -74,8 +74,6 @@ export default class Application {
                 return new Transmission(config)
             case "deluge":
                 return new Deluge(config)
-            case "rtorrent":
-                throw new Error('not support now')
         }
     }
 }

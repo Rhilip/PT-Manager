@@ -2,8 +2,8 @@
     <el-dialog
             :close-on-click-modal="false"
             :visible.sync="visible"
-            title="添加新下载服务器"
-    >
+            @close="handleDialogClose"
+            title="添加新下载服务器">
         <div>
             <el-form :model="form" label-position="top" ref="form">
                 <el-form-item label="下载服务器类型" prop="type">
@@ -16,7 +16,7 @@
                                 v-for="(value, name) in clients">
                             {{ name }}
                             <span style="float: right;">
-                                <img :src="`/assets/client/${value.type}.ico`" alt="client-img" class="client-img">
+                                <img :src="`/assets/client/${value.type}.png`" alt="client-img" class="client-img">
                             </span>
                         </el-option>
                     </el-select>
@@ -64,6 +64,8 @@
 
 <script>
   import _ from 'lodash';
+  import {clientsConfig} from "../../../plugins/factory/clients";
+  import bridge from "../../../plugins/bridge";
 
   export default {
     name: "ClientAdd",
@@ -73,7 +75,7 @@
         disableForm: true,
         disableSaveBtn: false,
         form: {},
-        clients: {},  // TODO
+        clients: clientsConfig,
         marks: {
           5e3: '5 秒',
           60e3: {
@@ -117,8 +119,24 @@
         this.$emit('close-client-add-dialog')
       },
 
-      handleClientAddSave() {
-        this.handleDialogClose()
+      async handleClientAddSave() {
+        this.disableSaveBtn = true
+        this.$notify.info('正在进行下载服务器连接测试，请耐心等待')
+        const client = bridge().clientFactory(this.form)
+
+        try {
+          const pong = await client.ping()
+          if (pong) {
+            const Clients = bridge().store.get("CONFIG:CLIENTS", [])
+            Clients.push(this.form)
+            bridge().store.set("CONFIG:CLIENTS", Clients)
+            this.handleDialogClose()
+          }
+        } catch (e) {
+          this.$notify.error('不能正常连接到下载服务器，请检查你的配置或增加超时时间')
+        } finally {
+          this.disableSaveBtn = false
+        }
       },
 
       formatTimeoutTooltip(timeout) {
@@ -142,5 +160,8 @@
 </script>
 
 <style scoped>
-
+    .client-img {
+        height: 18px;
+        margin-top: 9px;
+    }
 </style>

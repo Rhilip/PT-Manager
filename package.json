@@ -19,7 +19,6 @@
     "url": "https://github.com/Rhilip/PT-Manager"
   },
   "dependencies": {
-    "buffer": "^5.6.0",
     "core-js": "^3.6.5",
     "element-ui": "^2.4.5",
     "localforage": "^1.9.0",
