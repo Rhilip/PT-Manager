@@ -13,7 +13,7 @@ module.exports = {
     '*'
   ],
   require: [
-    //`${cdn}jquery@${pkg.dependencies.jquery}/dist/jquery.min.js`,
+    `${cdn}jquery@${pkg.dependencies['jquery']}/dist/jquery.min.js`,
     `${cdn}vue@${pkg.dependencies['vue']}/dist/vue.min.js`,
     `${cdn}element-ui@${pkg.dependencies['element-ui']}/lib/index.js`,
     `${cdn}axios@${pkg.devDependencies['axios']}/dist/axios.min.js`,

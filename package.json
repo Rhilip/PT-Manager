@@ -21,6 +21,7 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "element-ui": "^2.4.5",
+    "jquery": "^3.5.1",
     "localforage": "^1.9.0",
     "lodash": "^4.17.20",
     "url-join": "^4.0.1",
