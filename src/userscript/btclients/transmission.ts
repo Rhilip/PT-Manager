@@ -2,7 +2,7 @@ import {
     TorrentClient,
     TorrentClientConfig,
     TorrentState
-} from "@/common/interfaces/btclients/AbstractClient";
+} from "@/interfaces/btclients/AbstractClient";
 
 import {
     defaultTransmissionConfig,
@@ -13,7 +13,7 @@ import {
     TransmissionTorrent, TransmissionTorrentBaseArguments,
     TransmissionTorrentClientConfig, TransmissionTorrentFilterRules,
     TransmissionTorrentGetArguments, TransmissionTorrentGetResponse, TransmissionTorrentRemoveArguments
-} from "@/common/interfaces/btclients/transmission";
+} from "@/interfaces/btclients/transmission";
 
 import urljoin from "url-join";
 import axios from "@/userscript/lib/axios";

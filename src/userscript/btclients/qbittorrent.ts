@@ -1,4 +1,4 @@
-import {TorrentClient, TorrentState} from "@/common/interfaces/btclients//AbstractClient";
+import {TorrentClient, TorrentState} from "@/interfaces/btclients//AbstractClient";
 import {
     defaultQbittorrentConfig,
     QbittorrentAddTorrentOptions,
@@ -7,7 +7,7 @@ import {
     QbittorrentTorrentFilterRules,
     QbittorrentTorrentState,
     RawTorrent,
-} from "@/common/interfaces/btclients/qbittorrent";
+} from "@/interfaces/btclients/qbittorrent";
 
 import urljoin from 'url-join'
 

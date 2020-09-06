@@ -26,8 +26,7 @@
                                     <li>Maxthon：<a href="http://extension.maxthon.com/detail/index.php?view_id=1680">Violentmonkey</a></li>
                                     <li>Dolphin：<a href="https://play.google.com/store/apps/details?id=net.tampermonkey.dolphin">Tampermonkey</a></li>
                                     <li>UC：<a href="https://play.google.com/store/apps/details?id=net.tampermonkey.uc">Tampermonkey</a></li>
-                                    <li>Qupzilla：（不需要额外软件）</li>
-                                    <li>AdGuard：（不需要额外软件）</li>
+                                    <li>Qupzilla 或 AdGuard：（不需要额外软件）</li>
                                 </ul>
                             </template>
                         </el-step>
@@ -51,11 +50,11 @@
                         </el-step>
                         <el-step title="刷新此页面">
                             <template v-slot:description>
-                                <p>如果你确认完成了<b>脚本管理器</b>和<b>用户脚本</b>的安装，请刷新此页面。如果发现本提示页面已经消失并出现管理界面，则说明安装完成。</p>
                                 <p>
+                                    如果你确认完成了<b>脚本管理器</b>和<b>用户脚本</b>的安装，请刷新此页面。如果发现本提示页面已经消失并出现管理界面，则说明安装完成。<br/>
                                     如果已启用脚本，但页面未能正常跳转。你也可以点击此处
                                     <el-button @click.stop="forceEnter" size="mini" type="success">
-                                        强行进入
+                                        进入
                                     </el-button>
                                 </p>
                             </template>

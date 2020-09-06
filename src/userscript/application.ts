@@ -4,9 +4,9 @@ import store from "./lib/storage";
 import {AxiosInstance} from "axios";
 import GMStorage from "gm-storage";
 
-import {Site} from "@/common/interfaces/common";
-import {CantInsertScriptError} from "@/common/interfaces/errors";
-import {TorrentClient, TorrentClientConfig} from "@/common/interfaces/btclients/AbstractClient";
+import {Site} from "@/interfaces/common";
+import {CantInsertScriptError} from "@/interfaces/errors";
+import {TorrentClient, TorrentClientConfig} from "@/interfaces/btclients/AbstractClient";
 import Qbittorrent from "@/userscript/btclients/qbittorrent";
 import Transmission from "@/userscript/btclients/transmission";
 import Deluge from "@/userscript/btclients/deluge";
@@ -32,7 +32,7 @@ export default class Application {
     // 辨别url，根据url判断是否应该页面的Application类型
     async init() {
         // Init Manager
-        if (location.hostname === store.get('CONFIG_MANAGER_HOSTNAME')  // 与用户自定义hostname进行对比
+        if (location.hostname === store.get('CONFIG:MANAGER_HOSTNAME')  // 与用户自定义hostname进行对比
             || this.managerHostname.includes(location.hostname)  // 默认的Hostname列表
         ) {
             return await this.initManagerPage()
@@ -57,7 +57,7 @@ export default class Application {
     async initSupportSitePage() {
         this.isSupportSitePage = true;
         // TODO 根据已添加的站点信息，添加对应的注入脚本
-        const allSites: Site[] = store.get('CONFIG_ALL_SITES', [])
+        const allSites: Site[] = store.get('CONFIG:ENABLED_SITES', [])
         for (let site of allSites) {
             console.log(site)
         }

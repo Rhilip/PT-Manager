@@ -1,5 +1,5 @@
 import Application from "./application";
-import {CantInsertScriptError} from "@/common/interfaces/errors";
+import {CantInsertScriptError} from "@/interfaces/errors";
 
 // 检查用户脚本平台
 if (typeof GM_xmlhttpRequest === 'undefined') {

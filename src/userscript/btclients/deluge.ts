@@ -4,13 +4,13 @@ import {
     TorrentClient,
     TorrentClientConfig,
     TorrentState
-} from "@/common/interfaces/btclients/AbstractClient";
+} from "@/interfaces/btclients/AbstractClient";
 import {
     defaultDelugeConfig,
     DelugeBooleanStatus, DelugeDefaultResponse,
     DelugeMethod, DelugeRawTorrent,
     DelugeTorrentField, DelugeTorrentFilterRules
-} from "@/common/interfaces/btclients/deluge";
+} from "@/interfaces/btclients/deluge";
 
 import urljoin from "url-join";
 import {AxiosResponse} from "axios";
