@@ -172,20 +172,21 @@ export default class Qbittorrent implements TorrentClient {
         switch (torrent.state) {
             case QbittorrentTorrentState.ForcedDL:
             case QbittorrentTorrentState.MetaDL:
+            case QbittorrentTorrentState.StalledDL:
                 state = TorrentState.downloading;
                 break;
             case QbittorrentTorrentState.Allocating:
-                // state = 'stalledDL';
                 state = TorrentState.queued;
                 break;
             case QbittorrentTorrentState.ForcedUP:
+            case QbittorrentTorrentState.Uploading:
+            case QbittorrentTorrentState.StalledUP:
                 state = TorrentState.seeding;
                 break;
             case QbittorrentTorrentState.PausedDL:
                 state = TorrentState.paused;
                 break;
             case QbittorrentTorrentState.PausedUP:
-                // state = 'completed';
                 state = TorrentState.paused;
                 break;
             case QbittorrentTorrentState.QueuedDL:
