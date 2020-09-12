@@ -1,14 +1,28 @@
 export interface AbstractSite {
-
-    // 检查用户是否登录方法
-    checkLogin: () => Promise<Boolean>;
+    // 获取站点内置配置
+    getDefaultConfig: () => SiteConfig;
 
     // 种子搜索方法
     searchTorrents: (filter: SearchTorrentFilter) => Promise<SearchTorrent[]>;
 
     // 用户信息获取方法
     getUserProfile: () => Promise<userProfile>;
+
+    // 用户自动签到方法
+    dailyCheckSignIn: () => Promise<Boolean>;
 }
+
+export interface SiteConfig {
+    /**
+     * 每个模板/站点都必须设置sid，格式为UUIDv4
+     * @url: https://www.uuidgenerator.net/version4
+     */
+    sid: string,
+
+    name: string,  // 站点名称
+    host: string,  // 站点域名（含schema和host）
+}
+
 
 export interface SearchTorrentExtraParams {
     [key: string]: string
@@ -39,10 +53,10 @@ export interface SearchTorrent {
     addTime: number,   // 种子添加时间戳（毫秒）
     uploader: string,   // 种子上传者，未获取到请置""
 
-    seeders: number,   // 当前上传者人数
-    leechers: number,  // 当前下载者人数
-    completed: number,  // 当前完成人数
-    comments?: number,  // 当前评论人数
+    seeders: number,   // 当前上传者人数，未获取到请置0
+    leechers: number,  // 当前下载者人数，未获取到请置0
+    completed: number,  // 当前完成人数，未获取到请置0
+    comments?: number,  // 当前评论人数，未获取到请置0
 
     // 与该种子有关的用户状态
     discount: TorrentDiscount,      // 种子优惠类型
