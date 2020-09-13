@@ -1,6 +1,11 @@
 export interface AbstractSite {
-    // 获取站点内置配置
-    getDefaultConfig: () => SiteConfig;
+    // 站点实例运行时配置
+    config: SiteConfig;
+
+    getDefaultConfig: () => SiteConfig;      // 获取站点内置配置
+    getConfig: () => SiteConfig;  // 获取站点示例运行时配置
+    setConfig: (config: Partial<SiteConfig>) => void;  // 使用输入配置覆盖默认配置
+    resetConfig: () => void;   // 恢复至默认配置
 
     // 种子搜索方法
     searchTorrents: (filter: SearchTorrentFilter) => Promise<SearchTorrent[]>;
@@ -14,13 +19,21 @@ export interface AbstractSite {
 
 export interface SiteConfig {
     /**
-     * 每个模板/站点都必须设置sid，格式为UUIDv4
+     * 每个站点都必须设置sid，格式为UUIDv4
      * @url: https://www.uuidgenerator.net/version4
      */
     sid: string,
 
     name: string,  // 站点名称
     host: string,  // 站点域名（含schema和host）
+
+    description?: string,  // 站点说明
+    favicon?: string,   // 站点Favicon图标
+    tags?: string[],   // 站点标签
+
+    collaborator?: string[],  // 维护者
+
+    [key: string]: any  // 啥都可以
 }
 
 
