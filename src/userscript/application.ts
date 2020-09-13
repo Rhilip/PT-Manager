@@ -6,10 +6,12 @@ import GMStorage from "gm-storage";
 
 import {Site} from "@/interfaces/common";
 import {CantInsertScriptError} from "@/interfaces/errors";
+
+import BtClientFactory from "@/userscript/lib/factory/btclients";
 import {TorrentClient, TorrentClientConfig} from "@/interfaces/btclients/AbstractClient";
-import Qbittorrent from "@/userscript/btclients/qbittorrent";
-import Transmission from "@/userscript/btclients/transmission";
-import Deluge from "@/userscript/btclients/deluge";
+
+import SiteFactory from "@/userscript/lib/factory/sites";
+import {AbstractSite, SiteConfig} from "@/interfaces/sites/AbstractSite";
 
 export default class Application {
     // 脚本应用中外抛的对象
@@ -67,13 +69,11 @@ export default class Application {
     }
 
     public clientFactory(config: TorrentClientConfig): TorrentClient {
-        switch (config.type) {
-            case "qbittorrent":
-                return new Qbittorrent(config)
-            case "transmission":
-                return new Transmission(config)
-            case "deluge":
-                return new Deluge(config)
-        }
+        return Object.freeze(new BtClientFactory[config.type](config));
+    }
+
+    public siteFactory(config: SiteConfig): AbstractSite {
+        // @ts-ignore
+        return Object.freeze(new SiteFactory[config.sid]()) as AbstractSite;
     }
 }
