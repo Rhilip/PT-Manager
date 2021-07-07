@@ -39,7 +39,8 @@ module.exports = {
       },
       {
         test: /\.tsx?$/,
-        loader: 'ts-loader'
+        loader: 'ts-loader',
+        options: { allowTsInNodeModules: true }
       },
       {
         test: require.resolve('./src/userscript/globals.js'),
