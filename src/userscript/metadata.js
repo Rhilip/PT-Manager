@@ -10,7 +10,8 @@ module.exports = {
   source: pkg.repository.url,
   license: 'MIT',
   include: [
-    '*'
+    '*://ptm.rhilip.info/*',   // 默认公网域名
+    '*://localhost:8080/*'   //  本地调试域名
   ],
   require: [
     `${cdn}jquery@${pkg.dependencies['jquery']}/dist/jquery.min.js`,

@@ -1,5 +1,5 @@
-import Application from "./application";
-import {CantInsertScriptError} from "@/interfaces/errors";
+import Application from "./lib/application";
+import Site from './lib/sites';
 
 // 检查用户脚本平台
 if (typeof GM_xmlhttpRequest === 'undefined') {
@@ -9,13 +9,12 @@ if (typeof GM_xmlhttpRequest === 'undefined') {
 // 注入脚本应用
 const app = new Application()
 
-// 封闭一个对象，阻止添加新属性并将所有现有属性标记为不可配置。当前属性的值只要原来是可写的就可以改变。
 Object.seal(app)
-app.init().then(r => {
-    // @ts-ignore 置入全局对象中
-    unsafeWindow['__PT_MANAGER__'] = app
+app.init().then(() => {
+    Object.assign(unsafeWindow, {
+        __PT_MANAGER__: app,
+        __PT_SITE__: Site
+    })
 }).catch(e => {
-    if (!(e instanceof CantInsertScriptError)) {
-        console.log(e)
-    }
+    console.log(e)
 })

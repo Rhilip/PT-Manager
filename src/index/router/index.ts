@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter, {RouteConfig} from 'vue-router'
-import bridge from "@/index/plugins/bridge";
 
 Vue.use(VueRouter)
 
@@ -31,20 +30,7 @@ const routes: Array<RouteConfig> = [
                 name: 'Search',
                 component: () => import('../views/Search.vue'),
                 meta: {content: '搜索聚合'}
-            },
-
-            {
-                path: 'setting/sites',
-                name: 'Setting/Sites',
-                component: () => import('../views/Setting/Sites.vue'),
-                meta: {content: '站点设置'}
-            },
-            {
-                path: 'setting/clients',
-                name: 'Setting/Clients',
-                component: () => import('../views/Setting/Clients.vue'),
-                meta: {content: '下载服务器设置'}
-            },
+            }
         ]
     }
 ]
@@ -54,7 +40,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    if (to.matched.some(record => record.meta.requireInstall) && bridge() === undefined) {
+    if (to.matched.some(record => record.meta.requireInstall) && (window as any)['__PT_MANAGER__'] === undefined) {
         next('/install')
     } else {
         next()

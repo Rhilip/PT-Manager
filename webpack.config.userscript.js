@@ -38,10 +38,13 @@ module.exports = {
         loader: 'eslint-loader'
       },
       {
-        test: /\.ts$/,
-        exclude: /node_modules/,
+        test: /\.tsx?$/,
         loader: 'ts-loader'
       },
+      {
+        test: require.resolve('./src/userscript/globals.js'),
+        use: 'exports-loader?type=commonjs&exports=axios',
+      }
     ]
   },
   plugins: [
