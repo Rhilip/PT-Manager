@@ -31,18 +31,18 @@
       <el-table-column label="站点" align="center" width="80px" class="captionText" sortable prop="source.name">
         <template #default="{row}">
           <el-link :href="row.source.url">{{ row.source.name }}</el-link><br>
-          <span>{{row.category || 'Other'}}</span>
+          <span style="white-space: nowrap;" :title="row.category">{{row.category || 'Other'}}</span>
         </template>
       </el-table-column>
       <el-table-column label="标题">
         <template #default="{row}">
-          <el-link :href="row.url" target="_blank" style="white-space: nowrap;">{{ row.title }}</el-link>
+          <el-link :href="row.url" target="_blank" style="white-space: nowrap;" :title="row.title">{{ row.title }}</el-link>
           <br/>
           <div class="sub-title captionText">
-            <span v-if="row.tags.length > 0" class="tags">
+            <span v-if="row.tags && row.tags.length > 0" class="tags">
               <span v-for="tag in row.tags" :key="tag.name" :style="{'background-color': tag.color}">{{ tag.name }}</span>
             </span>
-            <span style="white-space: nowrap;">{{ row.subTitle || '' }}</span>
+            <span style="white-space: nowrap;" :text="row.subTitle">{{ row.subTitle || '' }}</span>
           </div>
         </template>
       </el-table-column>

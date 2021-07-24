@@ -36,9 +36,9 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="配置基类" prop="schema" width="150" align="center">
+      <el-table-column label="配置基类" prop="schema" width="180" align="center">
         <template #default="scope">
-          {{ scope.row.schema || (scope.row.type === 'private' ? 'Private' : 'Base') }}
+          {{ scope.row.schema || (scope.row.type === 'private' ? 'AbstractPrivateSite' : 'AbstractBittorrentSite') }}
         </template>
       </el-table-column>
 
