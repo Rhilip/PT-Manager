@@ -16,12 +16,12 @@ export enum ETorrentBaseTagColor {
   '2x50%' = 'light-green', // 2x 上传 + 50% 下载
   '25%' = 'purple', // 25% 下载
   '30%' = 'indigo', // 30% 下载
-  '35%' = 'indigo darken-3', // 35% 下载
+  '35%' = '#283593', // 35% 下载
   '50%' = 'orange', // 50% 下载
   '70%' = 'blue-grey', // 70% 下载
-  '75%' = 'lime darken-3', // 75% 下载
-  'VIP' = 'orange darken-2', // 仅 VIP 可下载
-  'Excl.' = 'deep-orange darken-1', // 禁止转载
+  '75%' = '#9e9d24', // 75% 下载
+  'VIP' = '#f57c00', // 仅 VIP 可下载
+  'Excl.' = '#f4511e', // 禁止转载
 }
 
 // 定义种子中 tag 的展示形式

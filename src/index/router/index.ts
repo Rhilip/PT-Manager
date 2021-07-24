@@ -31,6 +31,13 @@ const routes: Array<RouteConfig> = [
                 name: 'Search',
                 component: () => import('../views/Search.vue'),
                 meta: {content: '搜索聚合'}
+            },
+
+            {
+                path: 'setting/sites',
+                name: 'Setting/Sites',
+                component: () => import('../views/Setting/Sites.vue'),
+                meta: {content: '站点设置'}
             }
         ]
     }

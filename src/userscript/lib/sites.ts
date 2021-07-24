@@ -16,6 +16,8 @@ context.keys().forEach(async (value) => {
 });
 
 export default class Sites {
+
+
     get ctx() {
         return context;
     }
@@ -25,7 +27,31 @@ export default class Sites {
     }
 
     get allSiteMetaData() {
-        return Object.values(supportList).map(x => x.siteMetadata)
+        return Object.keys(supportList).map(key => this.getSiteMetaData(key))
+    }
+
+    get enabledSite(): Set<string> {
+        return new Set(GM_getValue('enable_sites',[]));
+    }
+
+    getSiteMetaData(key: string) {
+        return {...supportList[key].siteMetadata, type: key.split('/')[0], key}
+    }
+
+    flushEnabledSite(enabledSites: Set<string>) {
+        GM_setValue('enable_sites', Array.from(enabledSites));
+    }
+
+    enableSite(siteName: siteName) {
+        const site = this.enabledSite;
+        site.add(siteName);
+        this.flushEnabledSite(site);
+    }
+
+    disableSite(siteName: siteName) {
+        const site = this.enabledSite;
+        site.delete(siteName);
+        this.flushEnabledSite(site);
     }
 
     async getSite(siteName: siteName) {

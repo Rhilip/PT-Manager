@@ -188,7 +188,7 @@ export default class BittorrentSite {
     // 统一设置一些 AxiosRequestConfig， 当作默认值
     axiosConfig.baseURL = axiosConfig.baseURL || this.activateUrl;
     axiosConfig.url = axiosConfig.url || '/';
-    console.log(axiosConfig);
+    // console.log(axiosConfig);
 
     let req: AxiosResponse;
     try {
@@ -433,7 +433,7 @@ export default class BittorrentSite {
     return torrents;
   }
 
-  protected fixParsedTorrent (torrent: ITorrent, requestConfig: SearchRequestConfig): ITorrent {
+  protected fixParsedTorrent (torrent: ITorrent, requestConfig: SearchRequestConfig): ITorrent & {source: any} {
     // 检查种子的id属性是否存在，如果不存在，则由 url, link 属性替代
     if (!torrent.id) {
       if (torrent.url) {
@@ -479,7 +479,7 @@ export default class BittorrentSite {
       torrent[key] = updateValue;
     }
 
-    return torrent;
+    return {...torrent, source: pick(this.config, ['name', 'schema', 'url', 'favicon', 'host'])};
   }
 
   protected parseRowToTorrent (row: Element | Document | Object, torrent: Partial<ITorrent> = {}): Partial<ITorrent> {

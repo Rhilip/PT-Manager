@@ -15,11 +15,10 @@ module.exports = {
   ],
   require: [
     `${cdn}sizzle@${pkg.dependencies['sizzle']}/dist/sizzle.js`,
-    `${cdn}jquery@${pkg.dependencies['jquery']}/dist/jquery.min.js`,
+    //`${cdn}jquery@${pkg.dependencies['jquery']}/dist/jquery.min.js`,
     //`${cdn}vue@${pkg.dependencies['vue']}/dist/vue.min.js`,
     //`${cdn}element-ui@${pkg.dependencies['element-ui']}/lib/index.js`,
-    `${cdn}gm-storage@${pkg.devDependencies['gm-storage']}/dist/index.umd.min.js`,
-    `${cdn}localforage@${pkg.dependencies['localforage']}/dist/localforage.min.js`
+    //`${cdn}localforage@${pkg.dependencies['localforage']}/dist/localforage.min.js`
   ],
   resource: [
     //`element ${cdn}element-ui@${pkg.dependencies['element-ui']}/lib/theme-chalk/index.css`
@@ -34,7 +33,7 @@ module.exports = {
     'GM_deleteValue',
     //'GM_openInTab',
     //'GM_getResourceText',
-    'GM_Info',
+    'GM_info',
     'unsafeWindow'
   ],
   connect: [

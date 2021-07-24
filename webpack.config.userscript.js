@@ -38,8 +38,7 @@ module.exports = {
       },
       {
         test: /\.tsx?$/,
-        loader: 'ts-loader',
-        options: { allowTsInNodeModules: true }
+        loader: 'ts-loader'
       }
     ]
   },

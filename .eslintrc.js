@@ -8,7 +8,7 @@ module.exports = {
     greasemonkey: true
   },
   globals: {
-    '__PT_MANAGER__': true
+    '__PTM_APP__': true
   },
   'extends': [
     'plugin:vue/essential',
