@@ -1,37 +1,52 @@
-import Container from '@ptpp/utils/class/container';
+import {ISiteMetadata} from "@/shared/types/site";
 
 type supportModuleType = 'schema' | 'public' | 'private'
+type siteName = `${supportModuleType}/${string}`
 
-const context = require.context('@ptpp/sites/src/', true, /\.ts$/);
+const supportList: Record<string, { siteMetadata: ISiteMetadata, default?: any }> = {};
 
-class Sites extends Container {
-    public readonly ctx = context;
+const context = require.context('../sites', true, /\.ts$/);
 
-    private readonly _supportList: {
-        [key in supportModuleType | 'all']: string[]
-    } = { private: [], public: [], schema: [], all: [] };
+context.keys().forEach(async (value) => {
+    const moduleName = value.replace(/^\.\//, '').replace(/\.ts$/, '');
 
-    constructor () {
-        super();
+    if (!moduleName.startsWith('schema')) { // 'schema/Abstract' 不应该被任何形式的导入和引用，也不会被构造
+        supportList[moduleName] = await context(value);
+    }
+});
+
+export default class Sites {
+    get ctx() {
+        return context;
+    }
+
+    get supportList() {
+        return supportList;
+    }
+
+    get allSiteMetaData() {
+        return Object.values(supportList).map(x => x.siteMetadata)
+    }
+
+    async getSite(siteName: siteName) {
+        const siteModule = supportList[siteName];
+        // eslint-disable-next-line prefer-const
+        let {siteMetadata: siteMetaData, default: SiteClass} = siteModule;
+
+        if (!siteMetaData.schema) {
+            siteMetaData.schema = siteName.includes('private') ? 'AbstractPrivateSite' : 'AbstractBittorrentSite';
+        }
 
         /**
-         * 使用 require.context 动态获取所有private, public, schema 方法
-         * 注意，设置的mode是weak，意味着我们不能使用 context('moduleA') 的方法获取模块
-         * 但这样也方便我们后续使用 Dynamic import 的相关特性来构造 webpackChunkName
-         * @refs: https://github.com/webpack/webpack/issues/9184
-         *
+         * 如果该模块没有导出 default class，那么我们认为我们需要从基类继承
+         * 并覆写基类的的 siteMetaData 信息
          */
-        context.keys().forEach(value => {
-            const moduleName = value.replace(/^\.\//, '').replace(/\.ts$/, '');
+        if (!SiteClass) {
+            const schemaModule = await context(`./schema/${siteMetaData.schema}.ts`);
+            SiteClass = schemaModule.default;
+        }
 
-            if (!moduleName.startsWith('schema/Abstract')) { // 'schema/Abstract' 不应该被任何形式的导入和引用，也不会被构造
-                const [_type, site] = moduleName.split('/');
-                this._supportList[_type as supportModuleType].push(site);
-                this._supportList.all.push(moduleName);
-            }
-        });
+        // @ts-ignore
+        return new SiteClass({}, siteMetaData);
     }
 }
-
-// 单例模式
-export default new Sites();

@@ -1,8 +1,10 @@
 import GMStorage from 'gm-storage';
+import Site from './sites';
 
 export default class Application {
     // 脚本应用中外抛的对象
     public readonly store = new GMStorage();
+    public readonly sites = new Site();
 
     private isInit = false;
 

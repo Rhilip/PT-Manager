@@ -1,5 +1,5 @@
 import Application from "./lib/application";
-import Site from './lib/sites';
+import axios from "./lib/axios";
 
 // 检查用户脚本平台
 if (typeof GM_xmlhttpRequest === 'undefined') {
@@ -12,8 +12,8 @@ const app = new Application()
 Object.seal(app)
 app.init().then(() => {
     Object.assign(unsafeWindow, {
-        __PT_MANAGER__: app,
-        __PT_SITE__: Site
+        __PTM_APP__: app,
+        __PTM_AXIOS__: axios
     })
 }).catch(e => {
     console.log(e)

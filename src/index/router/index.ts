@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter, {RouteConfig} from 'vue-router'
+import Layer from '../views/Layer.vue'
 
 Vue.use(VueRouter)
 
@@ -13,7 +14,7 @@ const routes: Array<RouteConfig> = [
 
     {
         path: '/',
-        component: () => import('../views/Layer.vue'),
+        component: Layer,
         meta: {
             requireInstall: true
         },
@@ -40,7 +41,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    if (to.matched.some(record => record.meta.requireInstall) && (window as any)['__PT_MANAGER__'] === undefined) {
+    if (to.matched.some(record => record.meta.requireInstall) && (window as any)['__PTM_APP__'] === undefined) {
         next('/install')
     } else {
         next()

@@ -25,9 +25,8 @@ module.exports = {
   },
   externals: {
     jquery: '$',
-    axios: 'axios',
+    sizzle: 'Sizzle',
     localforage: 'localforage',
-    'axios-userscript-adapter': 'axiosGmxhrAdapter',
     'gm-storage': 'GMStorage',
   },
   module: {
@@ -41,10 +40,6 @@ module.exports = {
         test: /\.tsx?$/,
         loader: 'ts-loader',
         options: { allowTsInNodeModules: true }
-      },
-      {
-        test: require.resolve('./src/userscript/globals.js'),
-        use: 'exports-loader?type=commonjs&exports=axios',
       }
     ]
   },

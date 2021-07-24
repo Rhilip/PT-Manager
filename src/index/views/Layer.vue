@@ -10,7 +10,7 @@
                         <template slot="title">
                             <span>概览</span>
                         </template>
-                        <el-menu-item :route="{name: 'Home'}" index="Home">
+                        <el-menu-item :route="{name: 'Home'}" index="Home" :disabled="true">
                             <i class="el-icon-menu"/>
                             <span slot="title">个人数据</span>
                         </el-menu-item>
@@ -27,7 +27,7 @@
                             <i class="el-icon-s-shop"/>
                             <span slot="title">站点设置</span>
                         </el-menu-item>
-                        <el-menu-item :route="{name: 'Setting/Clients'}" index="Setting/Clients">
+                        <el-menu-item :route="{name: 'Setting/Clients'}" index="Setting/Clients" :disabled="true">
                             <i class="el-icon-s-promotion"/>
                             <span slot="title">下载服务器</span>
                         </el-menu-item>
