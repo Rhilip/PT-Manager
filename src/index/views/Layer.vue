@@ -61,7 +61,7 @@
 </template>
 
 <script>
-const SCRIPT_VER = __PTM_APP__.info.script.version;
+const SCRIPT_VER = window['__PTM_APP__']?.info.script.version || '';
 
 export default {
   name: "Index",
